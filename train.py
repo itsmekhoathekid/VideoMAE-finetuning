@@ -90,6 +90,8 @@ def evaluate(model, dataloader, optimizer, criterion, device):
 
             outputs = model(frames)     # outputs là ImageClassifierOutput
             outputs = outputs.logits     # Tensor [batch_size, num_labels]
+            
+            loss = criterion(outputs, labels)
 
             total_loss += loss.item()
             _, predicted = torch.max(outputs, 1)
